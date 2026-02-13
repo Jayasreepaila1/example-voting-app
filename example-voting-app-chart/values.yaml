@@ -1,0 +1,35 @@
+db:
+  replicas: 1
+  image: postgres
+  tag: 15-alpine
+  user: postgres
+  password: postgres
+  port: 5432
+
+redis:
+  replicas: 1
+  image: redis
+  tag: alpine
+  port: 6379
+
+vote:
+  replicas: 1
+  image: dockersamples/examplevotingapp_vote
+  port: 80
+  service:
+    type: NodePort
+    port: 8080
+    nodePort: 31000
+
+result:
+  replicas: 1
+  image: dockersamples/examplevotingapp_result
+  port: 80
+  service:
+    type: NodePort
+    port: 8081
+    nodePort: 31001
+
+worker:
+  replicas: 1
+  image: dockersamples/examplevotingapp_worker
